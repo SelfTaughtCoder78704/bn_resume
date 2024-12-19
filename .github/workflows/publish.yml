@@ -42,11 +42,13 @@ jobs:
           ls -la .next/ || echo "No .next directory"
           echo "\nOut directory:"
           ls -la out/ || echo "No out directory"
+          echo "\nDetailed out directory structure:"
+          find out/ -type f || echo "No out directory"
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .next
+          path: out
 
   deploy:
     environment:
