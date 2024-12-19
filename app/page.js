@@ -88,6 +88,16 @@ const PortfolioPage = () => {
         "Delivered diverse range of frontend and backend development solutions",
         "Successfully completed projects across various technologies and frameworks"
       ]
+    },
+    {
+      title: "Mentor",
+      company: "OpenClassrooms",
+      type: "mentoring",
+      achievements: [
+        "Mentored students in web development, providing practical examples and resources to accelerate learning",
+        "Supported students in securing industry positions upon completing their programs",
+        "1.5 years of dedicated mentoring experience"
+      ]
     }
   ];
 
