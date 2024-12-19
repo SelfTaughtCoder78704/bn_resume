@@ -30,7 +30,9 @@ jobs:
           static_site_generator: next
 
       - name: Build with Next.js 🏗️
-        run: npx next build
+        run: |
+          rm -f next.config.js
+          npx next build
 
       - name: Debug directory structure
         run: |
@@ -38,16 +40,15 @@ jobs:
           pwd
           echo "\nRoot directory contents:"
           ls -la
-          echo "\nProject structure:"
-          tree -L 3 || (apt-get update && apt-get install -y tree && tree -L 3)
           echo "\nNext.js build output:"
           ls -la .next/ || echo "No .next directory"
-          ls -la out/ || echo "No out directory"
+          echo "\nStandalone directory:"
+          ls -la .next/standalone/ || echo "No standalone directory"
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .next/static
+          path: .next/standalone/.next/static
 
   deploy:
     environment:
