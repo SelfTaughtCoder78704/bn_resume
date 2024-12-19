@@ -1,18 +1,21 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
+const repoName = 'bn_resume';
 
 const nextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true,
   },
-  assetPrefix: isProd ? '/bn_resume/' : '',
-  basePath: isProd ? '/bn_resume' : '',
+  assetPrefix: isProd ? `/${repoName}/` : '',
+  basePath: isProd ? `/${repoName}` : '',
   output: 'export',
+  distDir: 'dist',
   trailingSlash: true,
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-    return config;
+  skipTrailingSlashRedirect: true,
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  generateBuildId: async () => {
+    return 'build'
   }
 };
 
