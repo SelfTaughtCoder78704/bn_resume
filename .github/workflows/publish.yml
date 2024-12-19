@@ -32,19 +32,22 @@ jobs:
       - name: Build with Next.js 🏗️
         run: npx next build
 
-      - name: List directories
+      - name: Debug directory structure
         run: |
-          echo "Root directory:"
+          echo "Current working directory:"
+          pwd
+          echo "\nRoot directory contents:"
           ls -la
-          echo "Out directory contents (if exists):"
-          ls -la out || echo "out directory does not exist"
-          echo ".next directory contents (if exists):"
-          ls -la .next || echo ".next directory does not exist"
+          echo "\nProject structure:"
+          tree -L 3 || (apt-get update && apt-get install -y tree && tree -L 3)
+          echo "\nNext.js build output:"
+          ls -la .next/ || echo "No .next directory"
+          ls -la out/ || echo "No out directory"
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: .next/static
 
   deploy:
     environment:
