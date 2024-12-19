@@ -13,20 +13,15 @@ const nextConfig = {
   trailingSlash: true,
   webpack: (config) => {
     config.resolve.fallback = { fs: false };
-
+    
+    // Update asset handling for fonts
     config.module.rules.push({
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
       type: 'asset/resource',
-      generator: {
-        filename: 'static/fonts/[name][ext]',
-      },
     });
 
     return config;
-  },
-  experimental: {
-    appDir: true,
-  },
+  }
 };
 
 export default nextConfig;
