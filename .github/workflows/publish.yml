@@ -35,13 +35,10 @@ jobs:
       - name: List output directory
         run: ls -la
 
-      - name: List .next directory
-        run: ls -la .next
-
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .next/out
+          path: out
 
   deploy:
     environment:
