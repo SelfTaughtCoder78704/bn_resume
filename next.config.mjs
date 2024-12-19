@@ -7,16 +7,26 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix: isProd ? `/${repoName}/` : '',
+  assetPrefix: isProd ? `/${repoName}` : '',
   basePath: isProd ? `/${repoName}` : '',
   output: 'export',
-  distDir: 'dist',
   trailingSlash: true,
-  skipTrailingSlashRedirect: true,
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  generateBuildId: async () => {
-    return 'build'
-  }
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+
+    config.module.rules.push({
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+      generator: {
+        filename: 'static/fonts/[name][ext]',
+      },
+    });
+
+    return config;
+  },
+  experimental: {
+    appDir: true,
+  },
 };
 
 export default nextConfig;

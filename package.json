@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "rm -rf out && next build",
-    "deploy": "touch out/.nojekyll && gh-pages -d out -t true"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "chart.js": "^4.4.5",
