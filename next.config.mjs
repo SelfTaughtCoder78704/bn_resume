@@ -8,7 +8,12 @@ const nextConfig = {
   },
   assetPrefix: isProd ? '/bn_resume/' : '',
   basePath: isProd ? '/bn_resume' : '',
-  output: 'export'
+  output: 'export',
+  trailingSlash: true,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+    return config;
+  }
 };
 
 export default nextConfig;
