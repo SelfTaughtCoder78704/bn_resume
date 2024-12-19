@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "predeploy": "rm -rf node_modules/.cache && rm -rf out && next build",
+    "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "chart.js": "^4.4.5",
@@ -27,5 +27,5 @@
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7"
   },
-  "homepage": "https://[your-github-username].github.io/bn_resume"
+  "homepage": "https://selftaughtcoder78704.github.io/bn_resume"
 }
